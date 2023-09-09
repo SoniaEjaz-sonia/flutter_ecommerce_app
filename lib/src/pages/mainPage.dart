@@ -4,13 +4,13 @@ import 'package:flutter_ecommerce_app/src/pages/shopping_cart_page.dart';
 import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 import 'package:flutter_ecommerce_app/src/themes/theme.dart';
 import 'package:flutter_ecommerce_app/src/widgets/BottomNavigationBar/bottom_navigation_bar.dart';
-import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
+import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
+  MainPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MainPageState createState() => _MainPageState();
@@ -32,12 +32,9 @@ class _MainPageState extends State<MainPage> {
             borderRadius: BorderRadius.all(Radius.circular(13)),
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
+                color: Theme.of(context).colorScheme.background,
                 boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Color(0xfff8f8f8),
-                      blurRadius: 10,
-                      spreadRadius: 10),
+                  BoxShadow(color: Color(0xfff8f8f8), blurRadius: 10, spreadRadius: 10),
                 ],
               ),
               child: Image.asset("assets/user.png"),
@@ -53,7 +50,7 @@ class _MainPageState extends State<MainPage> {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           boxShadow: AppTheme.shadow),
       child: Icon(
         icon,
@@ -86,12 +83,12 @@ class _MainPageState extends State<MainPage> {
             Spacer(),
             !isHomePageSelected
                 ? Container(
-                  padding: EdgeInsets.all(10),
-                  child: Icon(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
                       Icons.delete_outline,
                       color: LightColor.orange,
                     ),
-                ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
+                  ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
                 : SizedBox()
           ],
         ));
@@ -154,9 +151,7 @@ class _MainPageState extends State<MainPage> {
             Positioned(
               bottom: 0,
               right: 0,
-              child: CustomBottomNavigationBar(
-                onIconPresedCallback: onBottomIconPressed,
-              ),
+              child: CustomBottomNavigationBar(onIconPressedCallback: onBottomIconPressed),
             )
           ],
         ),

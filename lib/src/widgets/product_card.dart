@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_ecommerce_app/src/model/product.dart';
 import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
-import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
+import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 
 class ProductCard extends StatelessWidget {
+  const ProductCard({super.key, required this.product, required this.onSelected});
+
   final Product product;
   final ValueChanged<Product> onSelected;
-  ProductCard({Key key, this.product, this.onSelected}) : super(key: key);
-
-//   @override
-//   _ProductCardState createState() => _ProductCardState();
-// }
-
-// class _ProductCardState extends State<ProductCard> {
-//   Product product;
-//   @override
-//   void initState() {
-//     product = widget.product;
-//     super.initState();
-//   }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +20,7 @@ class ProductCard extends StatelessWidget {
           BoxShadow(color: Color(0xfff8f8f8), blurRadius: 15, spreadRadius: 10),
         ],
       ),
-      margin: EdgeInsets.symmetric(vertical: !product.isSelected ? 20 : 0),
+      margin: EdgeInsets.symmetric(vertical: !product.isSelected! ? 20 : 0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Stack(
@@ -43,9 +31,8 @@ class ProductCard extends StatelessWidget {
               top: 0,
               child: IconButton(
                 icon: Icon(
-                  product.isliked ? Icons.favorite : Icons.favorite_border,
-                  color:
-                      product.isliked ? LightColor.red : LightColor.iconColor,
+                  product.isLiked! ? Icons.favorite : Icons.favorite_border,
+                  color: product.isLiked! ? LightColor.red : LightColor.iconColor,
                 ),
                 onPressed: () {},
               ),
@@ -54,7 +41,7 @@ class ProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SizedBox(height: product.isSelected ? 15 : 0),
+                SizedBox(height: product.isSelected! ? 15 : 0),
                 Expanded(
                   child: Stack(
                     alignment: Alignment.center,
@@ -63,23 +50,22 @@ class ProductCard extends StatelessWidget {
                         radius: 40,
                         backgroundColor: LightColor.orange.withAlpha(40),
                       ),
-                      Image.asset(product.image)
+                      Image.asset(product.image!)
                     ],
                   ),
                 ),
-                // SizedBox(height: 5),
                 TitleText(
-                  text: product.name,
-                  fontSize: product.isSelected ? 16 : 14,
+                  text: product.name!,
+                  fontSize: product.isSelected! ? 16 : 14,
                 ),
                 TitleText(
-                  text: product.category,
-                  fontSize: product.isSelected ? 14 : 12,
+                  text: product.category!,
+                  fontSize: product.isSelected! ? 14 : 12,
                   color: LightColor.orange,
                 ),
                 TitleText(
                   text: product.price.toString(),
-                  fontSize: product.isSelected ? 18 : 16,
+                  fontSize: product.isSelected! ? 18 : 16,
                 ),
               ],
             ),

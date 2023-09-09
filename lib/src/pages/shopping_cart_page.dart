@@ -6,7 +6,7 @@ import 'package:flutter_ecommerce_app/src/themes/theme.dart';
 import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 
 class ShoppingCartPage extends StatelessWidget {
-  const ShoppingCartPage({Key key}) : super(key: key);
+  const ShoppingCartPage({Key? key}) : super(key: key);
 
   Widget _cartItems() {
     return Column(children: AppData.cartList.map((x) => _item(x)).toList());
@@ -31,9 +31,8 @@ class ShoppingCartPage extends StatelessWidget {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: Container(
-                            decoration: BoxDecoration(
-                                color: LightColor.lightGrey,
-                                borderRadius: BorderRadius.circular(10)),
+                            decoration:
+                                BoxDecoration(color: LightColor.lightGrey, borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
                       ],
@@ -43,7 +42,7 @@ class ShoppingCartPage extends StatelessWidget {
                 Positioned(
                   left: -20,
                   bottom: -20,
-                  child: Image.asset(model.image),
+                  child: Image.asset(model.image!),
                 )
               ],
             ),
@@ -51,7 +50,7 @@ class ShoppingCartPage extends StatelessWidget {
           Expanded(
               child: ListTile(
                   title: TitleText(
-                    text: model.name,
+                    text: model.name!,
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
                   ),
@@ -73,8 +72,7 @@ class ShoppingCartPage extends StatelessWidget {
                     height: 35,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                        color: LightColor.lightGrey.withAlpha(150),
-                        borderRadius: BorderRadius.circular(10)),
+                        color: LightColor.lightGrey.withAlpha(150), borderRadius: BorderRadius.circular(10)),
                     child: TitleText(
                       text: 'x${model.id}',
                       fontSize: 12,
@@ -128,7 +126,7 @@ class ShoppingCartPage extends StatelessWidget {
   double getPrice() {
     double price = 0;
     AppData.cartList.forEach((x) {
-      price += x.price * x.id;
+      price += x.price! * x.id!;
     });
     return price;
   }

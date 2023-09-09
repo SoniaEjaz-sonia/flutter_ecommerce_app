@@ -2,27 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/src/model/data.dart';
 import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 import 'package:flutter_ecommerce_app/src/themes/theme.dart';
-import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
+import 'package:flutter_ecommerce_app/src/widgets/title_text.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  ProductDetailPage({Key key}) : super(key: key);
+  ProductDetailPage({Key? key}) : super(key: key);
 
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
 
-class _ProductDetailPageState extends State<ProductDetailPage>
-    with TickerProviderStateMixin {
-  AnimationController controller;
-  Animation<double> animation;
+class _ProductDetailPageState extends State<ProductDetailPage> with TickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> animation;
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    animation = Tween<double>(begin: 0, end: 1).animate(
-        CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
+    controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    animation =
+        Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: controller, curve: Curves.easeInToLinear));
     controller.forward();
   }
 
@@ -69,7 +67,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     double size = 20,
     double padding = 10,
     bool isOutLine = false,
-    Function onPressed,
+    Function? onPressed,
   }) {
     return Container(
       height: 40,
@@ -77,18 +75,11 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       padding: EdgeInsets.all(padding),
       // margin: EdgeInsets.all(padding),
       decoration: BoxDecoration(
-        border: Border.all(
-            color: LightColor.iconColor,
-            style: isOutLine ? BorderStyle.solid : BorderStyle.none),
+        border: Border.all(color: LightColor.iconColor, style: isOutLine ? BorderStyle.solid : BorderStyle.none),
         borderRadius: BorderRadius.all(Radius.circular(13)),
-        color:
-            isOutLine ? Colors.transparent : Theme.of(context).backgroundColor,
+        color: isOutLine ? Colors.transparent : Theme.of(context).colorScheme.background,
         boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Color(0xfff8f8f8),
-              blurRadius: 5,
-              spreadRadius: 10,
-              offset: Offset(5, 5)),
+          BoxShadow(color: Color(0xfff8f8f8), blurRadius: 5, spreadRadius: 10, offset: Offset(5, 5)),
         ],
       ),
       child: Icon(icon, color: color, size: size),
@@ -131,8 +122,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
-          children:
-              AppData.showThumbnailList.map((x) => _thumbnail(x)).toList()),
+          children: AppData.showThumbnailList.map((x) => _thumbnail(x)).toList()),
     );
   }
 
@@ -189,9 +179,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                   child: Container(
                     width: 50,
                     height: 5,
-                    decoration: BoxDecoration(
-                        color: LightColor.iconColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    decoration:
+                        BoxDecoration(color: LightColor.iconColor, borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -220,14 +209,10 @@ class _ProductDetailPageState extends State<ProductDetailPage>
                           ),
                           Row(
                             children: <Widget>[
-                              Icon(Icons.star,
-                                  color: LightColor.yellowColor, size: 17),
-                              Icon(Icons.star,
-                                  color: LightColor.yellowColor, size: 17),
-                              Icon(Icons.star,
-                                  color: LightColor.yellowColor, size: 17),
-                              Icon(Icons.star,
-                                  color: LightColor.yellowColor, size: 17),
+                              Icon(Icons.star, color: LightColor.yellowColor, size: 17),
+                              Icon(Icons.star, color: LightColor.yellowColor, size: 17),
+                              Icon(Icons.star, color: LightColor.yellowColor, size: 17),
+                              Icon(Icons.star, color: LightColor.yellowColor, size: 17),
                               Icon(Icons.star_border, size: 17),
                             ],
                           ),
@@ -282,12 +267,9 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(
-            color: LightColor.iconColor,
-            style: !isSelected ? BorderStyle.solid : BorderStyle.none),
+        border: Border.all(color: LightColor.iconColor, style: !isSelected ? BorderStyle.solid : BorderStyle.none),
         borderRadius: BorderRadius.all(Radius.circular(13)),
-        color:
-            isSelected ? LightColor.orange : Theme.of(context).backgroundColor,
+        color: isSelected ? LightColor.orange : Theme.of(context).colorScheme.background,
       ),
       child: TitleText(
         text: text,
@@ -364,8 +346,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
     return FloatingActionButton(
       onPressed: () {},
       backgroundColor: LightColor.orange,
-      child: Icon(Icons.shopping_basket,
-          color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
+      child: Icon(Icons.shopping_basket, color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
     );
   }
 

@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/src/model/data.dart';
 import 'package:flutter_ecommerce_app/src/themes/light_color.dart';
 import 'package:flutter_ecommerce_app/src/themes/theme.dart';
+import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
 import 'package:flutter_ecommerce_app/src/widgets/product_card.dart';
 import 'package:flutter_ecommerce_app/src/widgets/product_icon.dart';
-import 'package:flutter_ecommerce_app/src/widgets/extentions.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(13)),
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           boxShadow: AppTheme.shadow),
       child: Icon(
         icon,
@@ -64,10 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       height: AppTheme.fullWidth(context) * .7,
       child: GridView(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            childAspectRatio: 4 / 3,
-            mainAxisSpacing: 30,
-            crossAxisSpacing: 20),
+            crossAxisCount: 1, childAspectRatio: 4 / 3, mainAxisSpacing: 30, crossAxisSpacing: 20),
         padding: EdgeInsets.only(left: 20),
         scrollDirection: Axis.horizontal,
         children: AppData.productList
@@ -99,15 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 40,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                  color: LightColor.lightGrey.withAlpha(100),
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  color: LightColor.lightGrey.withAlpha(100), borderRadius: BorderRadius.all(Radius.circular(10))),
               child: TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Search Products",
                     hintStyle: TextStyle(fontSize: 12),
-                    contentPadding:
-                        EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
+                    contentPadding: EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
                     prefixIcon: Icon(Icons.search, color: Colors.black54)),
               ),
             ),
